@@ -22,18 +22,20 @@ timestamps {
                 sh "mvn install -Dmaven.test.skip=true -B -V -e -fae -q"
             }
 
-            stage('Test') {
-                echo "Running unit tests"
-                sh "mvn -e test -B"
+            lock('http-8088') {
+                stage('Test') {
+                    echo "Running unit tests"
+                    sh "mvn -e test -B"
+                }
             }
-
+            
             stage('Publish Test Results') {
                 junit allowEmptyResults: true, testResults: '**/target/surefire-reports/TEST-*.xml, **/target/failsafe-reports/TEST-*.xml'
             }
 
             stage('OWASP Dependency Check') {
                 echo "Uitvoeren OWASP dependency check"
-                dependencyCheckAnalyzer datadir: '', hintsFile: '', includeCsvReports: false, includeHtmlReports: true, includeJsonReports: false, isAutoupdateDisabled: false, outdir: '', scanpath: '**/*.jar,**/pom.xml', skipOnScmChange: false, skipOnUpstreamChange: false, suppressionFile: '', zipExtensions: ''
+                sh "mvn org.owasp:dependency-check-maven:aggregate -Dformat=ALL -DsuppressionFile=./.mvn/owasp-suppression.xml"
 
                 dependencyCheckPublisher canComputeNew: false, defaultEncoding: '', healthy: '85', pattern: '**/dependency-check-report.xml', shouldDetectModules: true, unHealthy: ''
             }

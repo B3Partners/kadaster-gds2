@@ -14,8 +14,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <netbeans.hint.jdkPlatform>JDK_${project.build.targetVersion}</netbeans.hint.jdkPlatform>
         <maven-javadoc-plugin.version>3.0.1</maven-javadoc-plugin.version>
-        <junit.jupiter.version>5.2.0</junit.jupiter.version>
-        <junit.platform.version>1.2.0</junit.platform.version>
+        <junit.jupiter.version>5.3.1</junit.jupiter.version>
     </properties>
     <organization>
         <name>B3Partners B.V.</name>
@@ -64,12 +63,12 @@
         <repository>
             <id>repo.b3p.nl</id>
             <name>B3Partners releases repository</name>
-            <url>http://repo.b3p.nl/nexus/content/repositories/releases/</url>
+            <url>https://repo.b3p.nl/nexus/repository/releases/</url>
         </repository>
         <snapshotRepository>
             <id>repo.b3p.nl</id>
             <name>B3Partners snapshots repository</name>
-            <url>http://repo.b3p.nl/nexus/content/repositories/snapshots/</url>
+            <url>https://repo.b3p.nl/nexus/repository/snapshots/</url>
         </snapshotRepository>
         <site>
             <id>gh-pages</id>
@@ -164,6 +163,11 @@
                     <artifactId>soapui-maven-plugin</artifactId>
                     <version>5.4.0</version>
                 </plugin>
+                <plugin>
+                    <groupId>org.owasp</groupId>
+                    <artifactId>dependency-check-maven</artifactId>
+                    <version>4.0.0</version>
+                </plugin>
             </plugins>
         </pluginManagement>
         <plugins>
@@ -190,16 +194,10 @@
             </plugin>
             <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.junit.platform</groupId>
-                        <artifactId>junit-platform-surefire-provider</artifactId>
-                        <version>${junit.platform.version}</version>
-                    </dependency>
-                </dependencies>
             </plugin>
             <plugin>
                 <groupId>org.jvnet.jax-ws-commons</groupId>
+                <!--java 11... <groupId>com.sun.xml.ws</groupId><version>2.3.1</version>-->
                 <artifactId>jaxws-maven-plugin</artifactId>
                 <executions>
                     <execution>
@@ -262,11 +260,12 @@
                     <execution>
                         <configuration>
                             <projectFile>Gds2Afgifte-AfgifteService-v2-0-soapui-project_20171130.xml</projectFile>
+                            <mockService>AfgifteService Mock</mockService>
+                            <port>8088</port>
+                            <noBlock>true</noBlock>
                             <outputFolder>${project.build.directory}/surefire-reports</outputFolder>
                             <junitReport>true</junitReport>
                             <host>http://127.0.0.1:8088</host>
-                            <mockService>AfgifteService Mock</mockService>
-                            <noBlock>true</noBlock>
                         </configuration>
                         <goals>
                             <goal>mock</goal>
