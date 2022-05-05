@@ -389,7 +389,7 @@
             <plugin>
                 <artifactId>maven-release-plugin</artifactId>
                 <configuration>
-                    <tagNameFormat>${project.artifactId}-${project.version}</tagNameFormat>
+                    <tagNameFormat>@{project.artifactId}-{project.version}</tagNameFormat>
                 </configuration>
             </plugin>
         </plugins>
