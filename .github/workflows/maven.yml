@@ -3,12 +3,24 @@ name: Maven build
 on: [ push, pull_request, workflow_dispatch ]
 
 jobs:
+  check_keystore:
+    name: 'Check keystore'
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: 'Check keystore'
+        run: |    
+         ./jks-certificate-expiry-checker.sh --keystore ./src/main/resources/pkioverheid.jks --password changeit -t90 
+
   build:
     name: Java ${{ matrix.java }} build
     runs-on: ubuntu-latest
+    needs: check_keystore
     strategy:
       matrix:
         java: [ 11 ]
+        java-dist: [ 'temurin' ]
 
     steps:
       - uses: actions/checkout@v3
@@ -23,22 +35,22 @@ jobs:
         uses: actions/setup-java@v3
         with:
           java-version: ${{ matrix.java }}
-          distribution: 'adopt'
+          distribution: ${{ matrix.java-dist }}
 
       - name: Inspect environment
         run: |
           set | grep JAVA
 
       - name: Install
-        run: mvn -V -B -e install --global-toolchains .github/ubuntu-toolchains.xml
+        run: mvn -V -B -e install
 
       - name: Javadoc
         run: |
-          mvn javadoc:javadoc --global-toolchains .github/ubuntu-toolchains.xml
-          mvn javadoc:test-javadoc --global-toolchains .github/ubuntu-toolchains.xml
+          mvn javadoc:javadoc
+          mvn javadoc:test-javadoc
 
       - name: Site
-        run: mvn -B -e site site:stage --global-toolchains .github/ubuntu-toolchains.xml
+        run: mvn -B -e site site:stage
 
 
   deploy:
@@ -71,7 +83,7 @@ jobs:
           REPO_B3P_ACTOR: ${{ secrets.REPO_B3P_ACTOR }}
           REPO_B3P_TOKEN: ${{ secrets.REPO_B3P_TOKEN }}
         run: |
-          mvn -B -V -fae -Dmaven.test.skip=true clean deploy --settings .github/maven-settings.xml --global-toolchains .github/ubuntu-toolchains.xml
+          mvn -B -V -fae -Dmaven.test.skip=true clean deploy --settings .github/maven-settings.xml
 
 
   cleanup:

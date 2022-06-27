@@ -21,7 +21,7 @@ node {
 
             stage('Build') {
                 echo "Building branch: ${env.BRANCH_NAME}"
-                sh "mvn clean package -Dmaven.test.skip=true -B -V -e -fae -q --global-toolchains .jenkins/toolchains.xml"
+                sh "mvn clean package -Dmaven.test.skip=true -B -V -e -fae -q"
             }
 
             stage('Check keystore') {
@@ -32,7 +32,7 @@ node {
             lock('http-8088') {
                 stage('Test') {
                     echo "Running unit tests"
-                    sh "mvn -e test -B --global-toolchains .jenkins/toolchains.xml"
+                    sh "mvn -e test -B"
                 }
             }
 
