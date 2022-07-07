@@ -52,6 +52,9 @@ jobs:
       - name: Site
         run: mvn -B -e site site:stage
 
+      - name: Upload codecoverage
+        uses: codecov/codecov-action@v3
+
 
   deploy:
     name: Deploy artifacts
