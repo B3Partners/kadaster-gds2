@@ -4,9 +4,6 @@ kadaster-gds2
 JAX-WS classes voor benaderen van de Generieke Download Service 2 van het Kadaster. 
 
 [![Maven build](https://github.com/B3Partners/kadaster-gds2/actions/workflows/maven.yml/badge.svg)](https://github.com/B3Partners/kadaster-gds2/actions/workflows/maven.yml)
-[![Total alerts](https://img.shields.io/lgtm/alerts/g/B3Partners/kadaster-gds2.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/B3Partners/kadaster-gds2/alerts/)
-[![Language grade: Java](https://img.shields.io/lgtm/grade/java/g/B3Partners/kadaster-gds2.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/B3Partners/kadaster-gds2/context:java)
-
 
 ## Schemas
 
