@@ -19,6 +19,7 @@
         <maven-enforcer-plugin.version>3.1.0</maven-enforcer-plugin.version>
         <junit.jupiter.version>5.9.2</junit.jupiter.version>
         <jacoco-maven-plugin.version>0.8.8</jacoco-maven-plugin.version>
+        <maven-fluido-skin.version>2.0.0-M2</maven-fluido-skin.version>
     </properties>
     <organization>
         <name>B3Partners B.V.</name>
@@ -139,7 +140,7 @@
                 </plugin>
                 <plugin>
                     <artifactId>maven-site-plugin</artifactId>
-                    <version>3.12.1</version>
+                    <version>4.0.0-M4</version>
                 </plugin>
                 <plugin>
                     <artifactId>maven-install-plugin</artifactId>
@@ -170,7 +171,7 @@
                 <plugin>
                     <groupId>org.owasp</groupId>
                     <artifactId>dependency-check-maven</artifactId>
-                    <version>8.0.0</version>
+                    <version>8.0.2</version>
                     <configuration>
                         <suppressionFile>${project.basedir}/.mvn/owasp-suppression.xml</suppressionFile>
                         <format>ALL</format>
@@ -343,10 +344,16 @@
                     <generateSitemap>true</generateSitemap>
                     <attach>false</attach>
                     <outputEncoding>${project.build.sourceEncoding}</outputEncoding>
-                    <locales>nl</locales>
                     <relativizeDecorationLinks>false</relativizeDecorationLinks>
                     <skip>${skipTests}</skip>
                 </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.apache.maven.skins</groupId>
+                        <artifactId>maven-fluido-skin</artifactId>
+                        <version>${maven-fluido-skin.version}</version>
+                    </dependency>
+                </dependencies>
             </plugin>
             <plugin>
                 <artifactId>maven-scm-publish-plugin</artifactId>
