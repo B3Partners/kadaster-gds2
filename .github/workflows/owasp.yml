@@ -12,18 +12,13 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/cache@v3
-        with:
-          path: ~/.m2/repository
-          key: maven-${{ hashFiles('**/pom.xml') }}
-          restore-keys: |
-            maven-
 
       - name: Set up JDK
         uses: actions/setup-java@v3
         with:
           java-version: 11
           distribution: 'zulu'
+          cache: 'maven'
 
       - name: OWASP Dependency Check
         run: mvn -DskipTests -U package org.owasp:dependency-check-maven:check -fae -B -Dorg.slf4j.simpleLogger.defaultLogLevel=WARN -DfailBuildOnCVSS=7
