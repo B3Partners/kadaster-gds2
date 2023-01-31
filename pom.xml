@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>nl.b3p</groupId>
     <artifactId>kadaster-gds2</artifactId>
-    <version>2.8-SNAPSHOT</version>
+    <version>3.0-SNAPSHOT</version>
     <packaging>jar</packaging>
     <description>JAX-WS classes voor benaderen van de Generieke Download Service 2 van het Kadaster.</description>
     <name>Kadaster-GDS2</name>
@@ -251,7 +251,6 @@
                 <configuration>
                     <wsdlDirectory>src/main/resources/schemas</wsdlDirectory>
                     <wsdlFiles>
-                        <wsdlFile>gds2/service/afgifte/v20130701/Gds2Afgifte_AfgifteService_v1_0.wsdl</wsdlFile>
                         <wsdlFile>gds2/service/afgifte/v20170401/Gds2Afgifte_AfgifteService_v2_0.wsdl</wsdlFile>
                     </wsdlFiles>
                     <wsdlLocation>/schemas/*</wsdlLocation>

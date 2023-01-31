@@ -25,6 +25,7 @@ import javax.xml.ws.BindingProvider;
 import javax.xml.ws.handler.Handler;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import static nl.b3p.gds2.GDS2Util.*;
 import static org.junit.jupiter.api.Assertions.*;
@@ -81,11 +82,11 @@ public class GDS2MockTest {
         List<AfgifteType> afgiftes = response.getAntwoord().getBestandenLijst().getAfgifte();
         assertEquals(
                 "https://service30.kadaster.nl/gds2/download/private/6xxx-xxxx-xxxx-xxxx",
-                getAfgifteURL(afgiftes.get(0), getCertificaatBaseURL(response.getAntwoord()))
+                getAfgifteURL(afgiftes.get(0), Objects.requireNonNull(getCertificaatBaseURL(response.getAntwoord())))
         );
         assertEquals(
                 "https://service10.kadaster.nl/gds2/download/public/6xxx-xxxx-xxxx-xxxx",
-                getAfgifteURL(afgiftes.get(0), getAnoniemBaseURL(response.getAntwoord()))
+                getAfgifteURL(afgiftes.get(0), Objects.requireNonNull(getAnoniemBaseURL(response.getAntwoord())))
         );
     }
 
@@ -103,11 +104,11 @@ public class GDS2MockTest {
         List<AfgifteType> afgiftes = response.getAntwoord().getBestandenLijst().getAfgifte();
         assertEquals(
                 "https://service30.kadaster.nl/gds2/download/private/7xxx-xxxx-xxxx-xxxx",
-                getAfgifteURL(afgiftes.get(0), getCertificaatBaseURL(response.getAntwoord()))
+                getAfgifteURL(afgiftes.get(0), Objects.requireNonNull(getCertificaatBaseURL(response.getAntwoord())))
         );
         assertEquals(
                 "https://service10.kadaster.nl/gds2/download/public/7xxx-xxxx-xxxx-xxxx",
-                getAfgifteURL(afgiftes.get(0), getAnoniemBaseURL(response.getAntwoord()))
+                getAfgifteURL(afgiftes.get(0), Objects.requireNonNull(getAnoniemBaseURL(response.getAntwoord())))
         );
     }
 
@@ -126,7 +127,7 @@ public class GDS2MockTest {
         List<AfgifteType> afgiftes = response.getAntwoord().getBestandenLijst().getAfgifte();
         assertEquals(
                 "https://service30.kadaster.nl/gds2/download/private/4xxx-xxxx-xxxx-xxxx",
-                getAfgifteURL(afgiftes.get(0), getCertificaatBaseURL(response.getAntwoord()))
+                getAfgifteURL(afgiftes.get(0), Objects.requireNonNull(getCertificaatBaseURL(response.getAntwoord())))
         );
     }
 
@@ -145,20 +146,20 @@ public class GDS2MockTest {
         List<AfgifteType> afgiftes = response.getAntwoord().getBestandenLijst().getAfgifte();
         assertEquals(
                 "https://service30.kadaster.nl/gds2/download/private/6xxx-xxxx-xxxx-xxxx",
-                getAfgifteURL(afgiftes.get(0), getCertificaatBaseURL(response.getAntwoord()))
+                getAfgifteURL(afgiftes.get(0), Objects.requireNonNull(getCertificaatBaseURL(response.getAntwoord())))
         );
         assertEquals(
                 "https://service30.kadaster.nl/gds2/download/private/3xxx-xxxx-xxxx-xxxx",
-                getAfgifteURL(afgiftes.get(1), getCertificaatBaseURL(response.getAntwoord()))
+                getAfgifteURL(afgiftes.get(1), Objects.requireNonNull(getCertificaatBaseURL(response.getAntwoord())))
         );
 
         assertEquals(
                 "https://service10.kadaster.nl/gds2/download/public/6xxx-xxxx-xxxx-xxxx",
-                getAfgifteURL(afgiftes.get(0), getAnoniemBaseURL(response.getAntwoord()))
+                getAfgifteURL(afgiftes.get(0), Objects.requireNonNull(getAnoniemBaseURL(response.getAntwoord())))
         );
         assertEquals(
                 "https://service10.kadaster.nl/gds2/download/public/3xxx-xxxx-xxxx-xxxx",
-                getAfgifteURL(afgiftes.get(1), getAnoniemBaseURL(response.getAntwoord()))
+                getAfgifteURL(afgiftes.get(1), Objects.requireNonNull(getAnoniemBaseURL(response.getAntwoord())))
         );
     }
 
@@ -181,20 +182,20 @@ public class GDS2MockTest {
         List<AfgifteType> afgiftes = response.getAntwoord().getBestandenLijst().getAfgifte();
         assertEquals(
                 "https://service30.kadaster.nl/gds2/download/private/7xxx-xxxx-xxxx-xxxx",
-                getAfgifteURL(afgiftes.get(0), getCertificaatBaseURL(response.getAntwoord()))
+                getAfgifteURL(afgiftes.get(0), Objects.requireNonNull(getCertificaatBaseURL(response.getAntwoord())))
         );
         assertEquals(
                 "https://service30.kadaster.nl/gds2/download/private/3xxx-xxxx-xxxx-xxxx",
-                getAfgifteURL(afgiftes.get(1), getCertificaatBaseURL(response.getAntwoord()))
+                getAfgifteURL(afgiftes.get(1), Objects.requireNonNull(getCertificaatBaseURL(response.getAntwoord())))
         );
 
         assertEquals(
                 "https://service10.kadaster.nl/gds2/download/public/7xxx-xxxx-xxxx-xxxx",
-                getAfgifteURL(afgiftes.get(0), getAnoniemBaseURL(response.getAntwoord()))
+                getAfgifteURL(afgiftes.get(0), Objects.requireNonNull(getAnoniemBaseURL(response.getAntwoord())))
         );
         assertEquals(
                 "https://service10.kadaster.nl/gds2/download/public/3xxx-xxxx-xxxx-xxxx",
-                getAfgifteURL(afgiftes.get(1), getAnoniemBaseURL(response.getAntwoord()))
+                getAfgifteURL(afgiftes.get(1), Objects.requireNonNull(getAnoniemBaseURL(response.getAntwoord())))
         );
     }
 
@@ -218,19 +219,19 @@ public class GDS2MockTest {
         List<AfgifteType> afgiftes = response.getAntwoord().getBestandenLijst().getAfgifte();
         assertEquals(
                 "https://service30.kadaster.nl/gds2/download/private/3xxx-xxxx-xxxx-xxxx",
-                getAfgifteURL(afgiftes.get(0), getCertificaatBaseURL(response.getAntwoord()))
+                getAfgifteURL(afgiftes.get(0), Objects.requireNonNull(getCertificaatBaseURL(response.getAntwoord())))
         );
         assertEquals(
                 "https://service30.kadaster.nl/gds2/download/private/4xxx-xxxx-xxxx-xxxx",
-                getAfgifteURL(afgiftes.get(1), getCertificaatBaseURL(response.getAntwoord()))
+                getAfgifteURL(afgiftes.get(1), Objects.requireNonNull(getCertificaatBaseURL(response.getAntwoord())))
         );
         assertEquals(
                 "https://service30.kadaster.nl/gds2/download/private/5xxx-xxxx-xxxx-xxxx",
-                getAfgifteURL(afgiftes.get(2), getCertificaatBaseURL(response.getAntwoord()))
+                getAfgifteURL(afgiftes.get(2), Objects.requireNonNull(getCertificaatBaseURL(response.getAntwoord())))
         );
         assertEquals(
                 "https://service10.kadaster.nl/gds2/download/public/3xxx-xxxx-xxxx-xxxx",
-                getAfgifteURL(afgiftes.get(0), getAnoniemBaseURL(response.getAntwoord()))
+                getAfgifteURL(afgiftes.get(0), Objects.requireNonNull(getAnoniemBaseURL(response.getAntwoord())))
         );
     }
 
@@ -252,7 +253,7 @@ public class GDS2MockTest {
         List<AfgifteType> afgiftes = response.getAntwoord().getBestandenLijst().getAfgifte();
         assertEquals(
                 "https://service10.kadaster.nl/gds2/download/public/5xxx-xxxx-xxxx-xxxx",
-                getAfgifteURL(afgiftes.get(4), getAnoniemBaseURL(response.getAntwoord()))
+                getAfgifteURL(afgiftes.get(4), Objects.requireNonNull(getAnoniemBaseURL(response.getAntwoord())))
         );
     }
 
@@ -274,7 +275,7 @@ public class GDS2MockTest {
         List<AfgifteType> afgiftes = response.getAntwoord().getBestandenLijst().getAfgifte();
         assertEquals(
                 "https://service10.kadaster.nl/gds2/download/public/5xxx-xxxx-xxxx-xxxx",
-                getAfgifteURL(afgiftes.get(2), getAnoniemBaseURL(response.getAntwoord()))
+                getAfgifteURL(afgiftes.get(2), Objects.requireNonNull(getAnoniemBaseURL(response.getAntwoord())))
         );
     }
 }
