@@ -86,7 +86,7 @@ jobs:
         with:
           serverhostname: ${{ secrets.DEPENDENCY_TRACK_HOSTNAME }}
           apikey: ${{ secrets.DEPENDENCY_TRACK_APIKEY }}
-          project: '940fcf6b-1106-4512-8313-ec46bd82fafc'
+          project: '013d5b00-b560-4d0e-8a8c-c007a3dae484'
           bomfilename: 'target/bom.xml'
 
   cleanup:
