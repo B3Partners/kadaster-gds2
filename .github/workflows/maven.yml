@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: 'Check keystore'
         run: |    
@@ -30,7 +30,7 @@ jobs:
         java-dist: [ 'temurin' ]
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Set up JDK for build
         uses: actions/setup-java@v3
@@ -64,7 +64,7 @@ jobs:
       contents: read
     if: ${{ github.ref == 'refs/heads/master' && ( github.event_name == 'push' || github.event_name == 'workflow_dispatch' ) }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: 'Set up JDK'
         uses: actions/setup-java@v3
