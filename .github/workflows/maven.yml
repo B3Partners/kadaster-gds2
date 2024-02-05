@@ -52,7 +52,7 @@ jobs:
         run: mvn -B -e site site:stage -DnvdApiKey=${{ secrets.NVD_API_KEY }}
 
       - name: 'Upload code coverage'
-        uses: codecov/codecov-action@v3
+        uses: codecov/codecov-action@v4
 
 
   deploy:
