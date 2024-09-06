@@ -359,6 +359,7 @@
                 <configuration>
                     <content>${project.reporting.outputDirectory}</content>
                     <scmBranch>gh-pages</scmBranch>
+                    <tryUpdate>true</tryUpdate>
                 </configuration>
                 <executions>
                     <execution>
