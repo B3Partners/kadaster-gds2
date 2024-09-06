@@ -13,6 +13,8 @@
         <project.build.targetVersion>${java.version}</project.build.targetVersion>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
+        <maven.compiler.release>${java.version}</maven.compiler.release>
+        <maven-compiler-plugin.version>3.12.1</maven-compiler-plugin.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <maven-javadoc-plugin.version>3.10.0</maven-javadoc-plugin.version>
@@ -33,8 +35,8 @@
         <tag>HEAD</tag>
     </scm>
     <issueManagement>
-        <system>Github</system>
-        <url>https://github.com/B3Partners/kadaster-gds2/issues</url>
+        <system>Jira</system>
+        <url>https://b3partners.atlassian.net/jira/software/c/projects/BRMO/issues/</url>
     </issueManagement>
     <dependencies>
         <!--
@@ -196,7 +198,7 @@
                         <configuration>
                             <rules>
                                 <requireMavenVersion>
-                                    <version>[3.8.0,)</version>
+                                    <version>[3.9.0,)</version>
                                 </requireMavenVersion>
                                 <requireJavaVersion>
                                     <version>${java.version}</version>
@@ -342,8 +344,6 @@
                     <skipDeploy>true</skipDeploy>
                     <generateSitemap>true</generateSitemap>
                     <attach>false</attach>
-                    <outputEncoding>${project.build.sourceEncoding}</outputEncoding>
-                    <relativizeDecorationLinks>false</relativizeDecorationLinks>
                     <skip>${skipTests}</skip>
                 </configuration>
                 <dependencies>
