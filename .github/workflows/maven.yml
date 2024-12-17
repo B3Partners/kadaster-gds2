@@ -84,14 +84,6 @@ jobs:
         run: |
           mvn -B -V -fae -Dmaven.test.skip=true clean deploy --settings .github/maven-settings.xml
 
-      - name: 'Deploy SBOM'
-        uses: DependencyTrack/gh-upload-sbom@v3
-        with:
-          serverhostname: ${{ secrets.DEPENDENCY_TRACK_HOSTNAME }}
-          apikey: ${{ secrets.DEPENDENCY_TRACK_APIKEY }}
-          project: '013d5b00-b560-4d0e-8a8c-c007a3dae484'
-          bomfilename: 'target/bom.xml'
-
 
   cleanup:
     name: 'Maven cache cleanup'
