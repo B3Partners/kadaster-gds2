@@ -11,6 +11,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 /**
@@ -38,6 +39,7 @@ public class GDS2UtilTest {
     }
 
 
+    @SuppressWarnings("deprecation")
     @Test
     public void testGetDatumTijd_nu() {
         final GregorianCalendar cal = GDS2Util.getDatumTijd("nu");
@@ -63,6 +65,7 @@ public class GDS2UtilTest {
     public void testGetXMLDatumTijd_int_int_int() {
         final XMLGregorianCalendar cal = GDS2Util.getXMLDatumTijd(2020, 3, 23);
 
+        assertNotNull(cal);
         assertEquals(2020, cal.getYear());
         assertEquals(3, cal.getMonth());
         assertEquals(23, cal.getDay());
