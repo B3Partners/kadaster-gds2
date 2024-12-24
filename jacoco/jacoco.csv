@@ -26,7 +26,7 @@ Kadaster-GDS2,nl.logius.digikoppeling.gb._2010._10,DataReference.Lifetime,14,3,0
 Kadaster-GDS2,nl.logius.digikoppeling.gb._2010._10,UrlType,12,3,2,0,5,1,3,1,2,1
 Kadaster-GDS2,nl.logius.digikoppeling.gb._2010._10,ChecksumType,7,3,0,0,3,1,2,1,2,1
 Kadaster-GDS2,nl.logius.digikoppeling.gb._2010._10,ObjectFactory,62,0,0,0,15,0,14,0,14,0
-Kadaster-GDS2,nl.logius.digikoppeling.gb._2010._10,GbProfile,31,23,4,0,5,5,4,2,2,2
+Kadaster-GDS2,nl.logius.digikoppeling.gb._2010._10,GbProfile,31,18,4,0,5,5,4,2,2,2
 Kadaster-GDS2,nl.logius.digikoppeling.gb._2010._10,AnyString,7,3,0,0,3,1,2,1,2,1
 Kadaster-GDS2,nl.logius.digikoppeling.gb._2010._10,DataReference.Content,28,3,0,0,12,1,8,1,8,1
 Kadaster-GDS2,nl.logius.digikoppeling.gb._2010._10,ExternalDataReference,18,3,2,0,6,1,4,1,3,1
