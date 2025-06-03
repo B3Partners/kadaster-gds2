@@ -24,28 +24,27 @@ function start {
   RET=0
   CURRENT=$(date +%s)
 
-  THRESHOLD=$(($CURRENT + ($THRESHOLD_IN_DAYS * 24 * 60 * 60)))
-  if [ $THRESHOLD -le $CURRENT ]; then
+  THRESHOLD=$((CURRENT + (THRESHOLD_IN_DAYS * 24 * 60 * 60)))
+  if [ $THRESHOLD -le "$CURRENT" ]; then
     echo "[ERROR] Invalid date."
     exit 1
   fi
-  echo "Looking for certificates inside the keystore $(basename $KEYSTORE) expiring in $THRESHOLD_IN_DAYS day(s)..."
+  echo "Looking for certificates inside the keystore $(basename "$KEYSTORE") expiring in $THRESHOLD_IN_DAYS day(s)..."
 
-  $KEYTOOL -list -v -keystore "$KEYSTORE" $PASSWORD 2>&1 >/dev/null
+  $KEYTOOL -list -v -keystore "$KEYSTORE" -storepass "$PASSWORD" 2>&1 >/dev/null
   if [ $? -gt 0 ]; then
     echo "Error opening the keystore."
     exit 1
   fi
 
-  $KEYTOOL -list -v -keystore "$KEYSTORE" $PASSWORD | grep Alias | gawk 'match($0, /(Alias name: )(.*)/, e) {print e[2]; }' | {
-    while read ALIAS; do
+  $KEYTOOL -list -v -keystore "$KEYSTORE" -storepass "$PASSWORD" | grep "Alias name:" | awk -F': ' '{print $2}' | {
+      while read -r ALIAS; do
       # Iterate through all the certificate alias
-      EXPIRACY=$($KEYTOOL -list -v -keystore "$KEYSTORE" $PASSWORD -alias "$ALIAS" | grep Valid)
-      UNTIL=$($KEYTOOL -list -v -keystore "$KEYSTORE" $PASSWORD -alias "$ALIAS" | grep Valid | perl -ne 'if(/until: (.*?)\n/) { print "$1\n"; }')
+      UNTIL=$($KEYTOOL -list -v -keystore "$KEYSTORE" -storepass "$PASSWORD" -alias "$ALIAS" | grep "Valid from:" | sed -n 's/.*until: \(.*\)$/\1/p')
       UNTIL_SECONDS=$(date -d "$UNTIL" +%s)
-      REMAINING_DAYS=$((($UNTIL_SECONDS - $(date +%s)) / 60 / 60 / 24))
-      if [ $THRESHOLD -le $UNTIL_SECONDS ]; then
-        echo "[OK]      Certificate $ALIAS expires in '$UNTIL' ($REMAINING_DAYS day(s) remaining)."
+      REMAINING_DAYS=$(((UNTIL_SECONDS - $(date +%s)) / 60 / 60 / 24))
+      if [ $THRESHOLD -le "$UNTIL_SECONDS" ]; then
+        echo "[OK]      Certificate $ALIAS expires on '$UNTIL' ($REMAINING_DAYS day(s) remaining)."
       else
         RET=1
         echo "[WARNING] Certificate $ALIAS expires in '$UNTIL' ($REMAINING_DAYS day(s) remaining)."
@@ -61,7 +60,7 @@ eval set -- "$ARGS"
 while true; do
   case "$1" in
   -p | --password)
-    if [ -n "$2" ]; then PASSWORD=" -storepass $2"; else
+    if [ -n "$2" ]; then PASSWORD="$2"; else
       echo "Invalid password"
       exit 1
     fi
