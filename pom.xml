@@ -20,7 +20,7 @@
         <maven-javadoc-plugin.version>3.11.2</maven-javadoc-plugin.version>
         <maven-enforcer-plugin.version>3.5.0</maven-enforcer-plugin.version>
         <junit.jupiter.version>6.0.0</junit.jupiter.version>
-        <jacoco-maven-plugin.version>0.8.13</jacoco-maven-plugin.version>
+        <jacoco-maven-plugin.version>0.8.14</jacoco-maven-plugin.version>
         <maven-fluido-skin.version>2.1.0</maven-fluido-skin.version>
     </properties>
     <organization>
