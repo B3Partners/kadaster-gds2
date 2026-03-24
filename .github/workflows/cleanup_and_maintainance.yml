@@ -7,7 +7,7 @@ on:
 
 jobs:
   stale:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-slim
     name: Close Stale PRs
     permissions:
       pull-requests: write
