@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <site xsi:schemaLocation="http://maven.apache.org/SITE/2.0.0 https://maven.apache.org/xsd/site-2.0.0.xsd"
       xmlns="http://maven.apache.org/SITE/2.0.0"
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -29,7 +30,6 @@
             <item name="Handleiding Koppelvlak GDS - Schema's"
                   href="/Handleiding Koppelvlak GDS - Schema's (v20170401) v2.4.pdf"/>
         </menu>
-        <menu ref="modules"/>
         <menu ref="reports"/>
     </body>
     <poweredBy/>

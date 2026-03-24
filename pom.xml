@@ -199,7 +199,7 @@
                         <configuration>
                             <rules>
                                 <requireMavenVersion>
-                                    <version>[3.8.8,)</version>
+                                    <version>[3.9,)</version>
                                 </requireMavenVersion>
                                 <requireJavaVersion>
                                     <version>${java.version}</version>
@@ -346,6 +346,8 @@
                     <generateSitemap>true</generateSitemap>
                     <attach>false</attach>
                     <skip>${skipTests}</skip>
+                    <outputEncoding>${project.build.sourceEncoding}</outputEncoding>
+                    <relativizeSiteLinks>false</relativizeSiteLinks>
                 </configuration>
                 <dependencies>
                     <dependency>
