@@ -10,29 +10,37 @@ template: |
   
 categories:
   - title: 🚨 Verwijderd
-    label: removed
+    when:
+      label: removed
   - title: ⚠️ Deprecated
-    label: deprecated
+    when:
+      label: deprecated
   - title: 🚀 Nieuw en Verbeterd
-    labels:
-      - enhancement
-      - feature
+    when:
+      labels:
+        - enhancement
+        - feature
   - title: 🐛 Bug Fixes
-    labels:
-      - bug
-      - fix
-      - bugfix
-      - regression
+    when:
+      labels:
+        - bug
+        - fix
+        - bugfix
+        - regression
   - title: 📖 Documentatie
-    label: documentation
+    when:
+      label: documentation
   - title: 🔨 Dependency updates
-    label: dependencies
+    when:
+      label: dependencies
   - title: 🚦 Tests
-    labels:
-      - tests
+    when:
+      labels:
+        - tests
   - title: 🔨 Infra
-    labels:
-      - build infrastructure
+    when:
+      labels:
+        - build infrastructure
 
 replacers:
   - search: '/CVE-(\d{4})-(\d+)/g'
