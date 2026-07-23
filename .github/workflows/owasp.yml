@@ -1,4 +1,4 @@
-name: GH OWASP dependency check
+name: 'GH OWASP dependency check'
 
 on:
   pull_request:
@@ -7,27 +7,48 @@ on:
 
 jobs:
   build:
-    name: OWASP dependency check
+    name: 'OWASP dependency check'
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v7
 
-      - name: Set up JDK
+      - name: 'Set up JDK'
         uses: actions/setup-java@v5
         with:
           java-version: 17
           distribution: 'zulu'
           cache: 'maven'
 
-      - name: OWASP Dependency Check
+      - name: 'Restore OWASP cache'
+        uses: actions/cache/restore@v6
+        with:
+          path: ~/.m2/repository/org/owasp/dependency-check-data
+          key: owasp-db-maven-${{ github.run_id }}
+          restore-keys: |
+            owasp-db-maven
+
+      - name: 'Update OWASP Dependency Check Database'
+        env:
+          NVD_API_KEY: ${{ secrets.NVD_API_KEY }}
+        run: mvn -U org.owasp:dependency-check-maven:update-only -DnvdApiKeyEnvironmentVariable=NVD_API_KEY
+
+      - name: 'Save OWASP cache'
+        uses: actions/cache/save@v6
+        with:
+          path: ~/.m2/repository/org/owasp/dependency-check-data
+          key: owasp-db-maven-${{ github.run_id }}
+
+      - name: 'OWASP Dependency Check'
+        continue-on-error: true
+        env:
+          NVD_API_KEY: ${{ secrets.NVD_API_KEY }}
         run: mvn -DnvdApiKey=${{ secrets.NVD_API_KEY }} -DskipTests -U package org.owasp:dependency-check-maven:check -fae -B -Dorg.slf4j.simpleLogger.defaultLogLevel=WARN -DfailBuildOnCVSS=7
 
-      - name: Upload result to GitHub Code Scanning
+      - name: 'Upload result to GitHub Code Scanning'
         uses: github/codeql-action/upload-sarif@v4
         with:
           sarif_file: target/dependency-check-report.sarif
 
-      - name: Cleanup snapshots
-        run: |
-          find ~/.m2/repository -name "*SNAPSHOT*" -type d | xargs rm -rf {}
+      - name: 'Cleanup snapshots'
+        run: mvn clean build-helper:remove-project-artifact
